@@ -28,8 +28,54 @@ def print_list():
         node = node.next
     print
 
+def insert_node(data) :
+    global node_A
+    new_node = Node(data)
+    node_P = node_A
+    node_T = node_A
+
+    while node_T.data <= data:
+        node_P = node_T
+        node_T = node_T.next
+
+    new_node.next = node_T
+    node_P.next = new_node
+
+    new_node.prev = node_P
+    node_T.prev = new_node
+    # 기존 링크드 리스트랑 차이점 이전노드랑 연결해줌
+
+def delete_node(del_data):
+    global node_A
+    pre_node = node_A
+    next_node = pre_node.next
+    next_next_node = next_node.next
+
+    if pre_node.data == del_data:
+        node_A = next_node
+        del pre_node
+        return
+
+    while next_node:
+        if next_node.data == del_data:
+            next_next_node = next_node.next
+            pre_node.next = next_node.next
+            next_next_node.prev = next_node.prev
+            del next_node
+            break
+        pre_node = next_node
+        next_node = next_node.next
+        next_next_node = next_node.next
 
 if __name__ == '__main__':
     print("연결리스트 초기화후")
     init_list()
+    print_list()
+    
+    print("C 노드 추가후")
+    insert_node("C")
+    print_list()
+
+    print("D 노드 삭제후")
+    delete_node("D")
     print_list()
