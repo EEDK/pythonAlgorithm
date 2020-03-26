@@ -1,20 +1,19 @@
-# python의 경우 stack을 기초 제공해줌
 
-def push(item):
-    stack.append(item)
+def put(item) :
+    queue.append(item)
 
-def pop():
-    return stack.pop()
+def get() :
+    return queue.pop()
 
 if __name__ == '__main__':
-    stack = []
-    push(1)
-    push(2)
-    push(3)
-    push(4)
+    queue = []
+    put(1)
+    put(2)
+    put(3)
+    put(4)
 
-    print("현재 스택의 모습")
-    print(stack)
+    print("현재 queue의 모습")
+    print(queue)
 
-    while stack:
-        print("POP > {}".format(pop()))
+    while queue:
+        print("POP > {}".format(get()))
