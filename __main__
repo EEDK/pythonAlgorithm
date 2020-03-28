@@ -36,6 +36,18 @@ def preorder_traverser(node):
     preorder_traverser(node.left)
     preorder_traverser(node.right)
 
+def inorder_traverser(node):
+    if node == None : return
+    inorder_traverser(node.left)
+    print(node.data , end = ' -> ')
+    inorder_traverser(node.right)
+
+def postorder_traverser(node):
+    if node == None : return
+    postorder_traverser(node.left)
+    postorder_traverser(node.right)
+    print(node.data , end = ' -> ')
+
 if __name__ == '__main__':
     init_tree()
-    preorder_traverser(root)
+    postorder_traverser(root)
