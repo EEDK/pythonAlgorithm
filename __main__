@@ -48,6 +48,20 @@ def postorder_traverser(node):
     postorder_traverser(node.right)
     print(node.data , end = ' -> ')
 
+levelq = []
+
+def levelorder_trverse(node) :
+    global levelq
+    levelq.append(node)
+    while len(levelq) != 0:
+        visit_node = levelq.pop(0)
+        print(visit_node.data , end = ' => ')
+
+        if visit_node.left != None:
+            levelq.append(visit_node.left)
+        if visit_node.right != None:
+            levelq.append(visit_node.right)
+
 if __name__ == '__main__':
     init_tree()
-    postorder_traverser(root)
+    levelorder_trverse(root)
