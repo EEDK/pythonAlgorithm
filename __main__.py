@@ -1,55 +1,54 @@
 import random
 import time
+import math
 
-compare_counter = 0
-swap_count = 0
 
-def selected_sort(random_list):
-    for sel in range ( len(random_list) - 1) :
-        min = random_list[sel]
-        minindex = sel
+def bubble_sort(list) :
+    for i in range(len(list) - 1):
+        for j in range(1 , len(list) - i):
+            if list[j - 1] > list[j]:
+                temp = list[j - 1]
+                list[j - 1] = list[j]
+                list[j] = temp
 
-        for step in range( sel + 1 , len(random_list)) :
-            if min > random_list[step]:
-                min = random_list[step]
-                minindex=step
 
-        random_list[minindex] = random_list[sel]
-        random_list[sel] = min
+def shell_sort(random_list):
+    h = 1
+    while h < len(random_list):
+        h = h * 3 + 1
+    h = math.floor(h / 3)
 
-def insertion_sort(my_list):
-    global compare_counter, swap_count
+    while h > 0:
+        for i in range(h):
+            start_index = i + h
 
-    my_list.insert(0, -1) # 배열 첫번재 값을 -1로 설정 
-    for s_idx in range( 2 , len(my_list) ):
-        temp = my_list[s_idx]
-        ins_idx = s_idx
-        compare_counter += 1
-        while my_list[ins_idx - 1] > temp :
-            swap_count += 1
-            my_list[ins_idx] = my_list[ins_idx-1]
-            ins_idx = ins_idx - 1
+            while start_index < len(random_list):
+                temp = random_list[start_index]
+                insert_index = start_index
 
-        my_list[ins_idx] = temp
-    del my_list[0]
+                while insert_index > h - 1 and random_list[insert_index - h] > temp:
+                    random_list[insert_index] = random_list[insert_index - h]
+                    insert_index = insert_index - h
+
+                random_list[insert_index] = temp
+                start_index = start_index + h
+        h = math.floor(h / 3)
+
 
 if __name__ == '__main__':
     list = []
-    input_n = input("정렬할 데이터 수 : ")
-    for i in range(int(input_n)) :
-        list.append(random.randint(1,int(input_n)))
-
+    n = input("정렬할 데이터 수 : ")
+    for i in range(int(n)):
+        list.append(random.randint(1 , int(n)))
     print("정렬 전")
     print(list)
 
     start_time = time.time()
-    insertion_sort(list)
+    shell_sort(list)
     running_time = time.time() - start_time
 
     print("정렬 후")
     print(list)
 
-    print("데이터의 크기 : {}".format(int(input_n)))
-    print("비교 횟수 : {}".format(compare_counter))
-    print("교환 횟수 : {}".format(swap_count))
+    print("데이터의 크기 : {}".format(int(n)))
     print("실행 시간 : {}".format(running_time))
