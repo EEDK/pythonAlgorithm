@@ -1,5 +1,21 @@
-from math import log10
-from random import randint
+def merge_sort(list):
+    if len(list) <= 1 : return list
+    half = len(list) // 2
+    left_list = merge_sort(list[:half])
+    right_list = merge_sort(list[half:])
+    merged_list = []
+
+    while len(left_list) > 0 and len(right_list) > 0 :
+        if left_list[0] > right_list[0] :
+            merged_list.append(right_list[0])
+            right_list.pop(0)
+        else :
+            merged_list.append(left_list[0])
+            left_list.pop(0)
+    if len(left_list) > 0 : merged_list += left_list
+    if len(right_list) > 0 : merged_list += right_list
+    return merged_list
+
 
 def left_node(idx = None):
     return ((idx + 1) << 1) - 1
@@ -32,18 +48,3 @@ def heap_sort(heap=None):
         tmp_array.append(heap.pop(0))
         up_heap(heap, 0 , len(heap) - 1)
     return tmp_array
-
-if __name__ == '__main__':
-    data = []
-    n = int(input("정렬할 데이터의 수 : "))
-    data = [ randint(1, 99999) for x in range(n)]
-
-    print("정렬 전")
-    print(data)
-
-    build_heap(data)
-
-    sorted_data = heap_sort(data)
-
-    print("정렬 후")
-    print(sorted_data)
