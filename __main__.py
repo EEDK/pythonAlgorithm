@@ -1,49 +1,55 @@
 from math import log10
 from random import randint
 
-def left_node(idx = None):
-    return ((idx + 1) << 1) - 1
+global counter
 
-def right_node(idx = None):
-    return (idx + 1) << 1
+def selected_sort(random_list):
+    for sel in range ( len(random_list) - 1) :
+        min = random_list[sel]
+        minindex = sel
 
-def up_heap(mylist=None, idx=None, heap_size = None):
-    l_node = left_node(idx)
-    r_node = right_node(idx)
+        for step in range( sel + 1 , len(random_list)) :
+            if min > random_list[step]:
+                min = random_list[step]
+                minindex=step
 
-    if l_node <= heap_size and mylist[l_node] > mylist[idx]:
-        largest = l_node
-    else:
-        largest = idx
-    if r_node <= heap_size and mylist[r_node] > mylist[largest]:
-        largest = r_node
-    if largest != idx:
-        mylist[idx] , mylist[largest] = mylist[largest] , mylist[idx]
-        up_heap(mylist, largest, heap_size)
+        random_list[minindex] = random_list[sel]
+        random_list[sel] = min
 
-def build_heap(mylist = None) :
-    heap_size = len(mylist) - 1
-    for i in reversed(range(len(mylist))) :
-        up_heap(mylist , i , heap_size)
+def binary_search(a_list , wanted_data) :
+    global counter
+    first = 0
+    last = len(a_list) - 1
 
-def heap_sort(heap=None):
-    tmp_array = list()
-    for i in range(len(heap)):
-        tmp_array.append(heap.pop(0))
-        up_heap(heap, 0 , len(heap) - 1)
-    return tmp_array
+    while first <= last:
+        idx = (first + last) // 2
+        counter += 1
+        if a_list[idx] == wanted_data:
+            print('{item} found at position {i}'.format(item=wanted_data, i = idx))
+            return True
+        elif a_list[idx] > wanted_data:
+            last = idx - 1
+        elif a_list[idx] < wanted_data:
+            first = idx + 1
+        else:
+            print('{item} not found in the list'.format(item=wanted_data))
+            return False
 
 if __name__ == '__main__':
     data = []
+    counter = 0
     n = int(input("정렬할 데이터의 수 : "))
-    data = [ randint(1, 99999) for x in range(n)]
+    data = [ randint(1, 100) for x in range(n)]
 
     print("정렬 전")
     print(data)
 
-    build_heap(data)
-
-    sorted_data = heap_sort(data)
+    selected_sort(data)
 
     print("정렬 후")
-    print(sorted_data)
+    print(data)
+
+    msg = binary_search(data, 50)
+    if msg == True:
+        print("총 {}번의 비교만으로 {}을 검색하였습니다.".format(counter, 50))
+    print(msg)
