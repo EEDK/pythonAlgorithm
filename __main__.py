@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+if __name__ == '__main__':
+    print("start NewProject")
+=======
 from math import log10
 from random import randint
 
@@ -53,3 +57,4 @@ if __name__ == '__main__':
     if msg == True:
         print("총 {}번의 비교만으로 {}을 검색하였습니다.".format(counter, 50))
     print(msg)
+>>>>>>> master
