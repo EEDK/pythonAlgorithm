@@ -2,7 +2,12 @@ def Sum(a , b) :
     ans = a + b 
     return ans
 
+def Mul(a , b) :
+    ans = a * b
+    return ans
 
 a = input()
 
-print(int(a[0]) + int(a[2]));
+ans = Mul(int(a[0]),int(a[2]))
+
+print(ans)
