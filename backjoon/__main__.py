@@ -6,8 +6,10 @@ def Mul(a , b) :
     ans = a * b
     return ans
 
-a = input()
 
-ans = Mul(int(a[0]),int(a[2]))
+
+a = int(input())
+
+ans = Factorial(a)
 
 print(ans)
