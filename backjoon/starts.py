@@ -7,3 +7,5 @@ def star1(n):
         i += 1
     print()
     star1(n-1);
+
+
