@@ -17,7 +17,6 @@ def star1(n):
         print()
         star1(n - 1);
 
-
 def star2(n):
     i = 0
     while i < n :
@@ -31,6 +30,8 @@ def star2(n):
         print()
         i += 1;
 
+def star3(n):
+    
 
 a = int(input())
 
