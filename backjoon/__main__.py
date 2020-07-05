@@ -18,6 +18,20 @@ def star1(n):
         star1(n - 1);
 
 
+def star2(n):
+    i = 0
+    while i < n :
+        j = 0
+        while j < n:
+            if i > j :
+                print(' ', end='')
+            else :
+                print('*', end='')
+            j += 1;
+        print()
+        i += 1;
+
+
 a = int(input())
 
-star1(a)
+star2(a)
