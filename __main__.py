@@ -18,9 +18,7 @@ def HansuTail(n , acc) :
                 else:
                     return HansuTail(n - 1, acc)
             return HansuTail(n - 1, acc + 1)
-
-i'm tired .'
-
+        
 def Hansu(n):
     return HansuTail(n , 1)
 
